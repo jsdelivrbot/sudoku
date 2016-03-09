@@ -17,11 +17,14 @@ Puzzle.prototype.dfs=function(){
         puzzle=this,
         row=aa(this.n2,this.n2),
         col=aa(this.n2,this.n2),
-        blk=aa(this.n2,this.n2)
+        blk=aa(this.n2,this.n2),
+        steps
     for(let i=0;i<this.n4;i++)
         if(this.a[i]!=0)
             reg(i,this.a[i]-1,1)
+    steps=0
     dfs(0)
+    return steps
     function aa(m,n){
         var res=[]
         for(let i=0;i<m;i++)
@@ -30,6 +33,7 @@ Puzzle.prototype.dfs=function(){
     }
     function dfs(d){
         // d for depth
+        steps++
         if(d==puzzle.n4)
             return true
         if(puzzle.a[d]!=0)

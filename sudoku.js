@@ -6,10 +6,12 @@ Promise.all([
         Puzzle=a[0],
         puzzleData=a[1],
         puzzle=new Puzzle(3,puzzleData),
-        startTime
+        startTime,
+        steps
     startTime=new Date
     console.table(puzzle.table())
-    puzzle.dfs()
+    steps=puzzle.dfs()
     console.table(puzzle.table())
-    console.log('Time used in second:',((new Date)-startTime)/1000)
+    console.log('Time used in seconds:',((new Date)-startTime)/1000)
+    console.log('Count of steps:',steps/1000000,'M')
 })
