@@ -9,7 +9,7 @@ Promise.all([
         startTime
     startTime=new Date
     console.table(puzzle.table())
-    //puzzle.dfs()
+    puzzle.dfs()
     console.table(puzzle.table())
     console.log('Time used in second:',((new Date)-startTime)/1000)
 })
