@@ -2,9 +2,13 @@ exports.wait()
 require([
     'Sudoku',
     'DirectedGraph',
+    'Vertex',
+    'Edge',
 ],(
     Sudoku,
-    DirectedGraph
+    DirectedGraph,
+    Vertex,
+    Edge
 )=>{
 var Puzzle=class Puzzle extends Sudoku{
     constructor(n,s){
@@ -13,6 +17,9 @@ var Puzzle=class Puzzle extends Sudoku{
         this.n4=this.n2*this.n2
         if(s)
             this.set(s)
+    }
+    set(s){
+        this.a=s.replace(/[\ \n]/g,'').split('')
     }
     get dfs(){
         var
@@ -68,11 +75,13 @@ var Puzzle=class Puzzle extends Sudoku{
             blk[b][n]=v
         }
     }
-    set(s){
-        this.a=s.replace(/[\ \n]/g,'').split('')
-    }
     get graph(){
         var graph=new DirectedGraph
+        class PuzzleVertex extends Vertex{
+            constructor(){
+                super()
+            }
+        }
         return graph
     }
     get table(){

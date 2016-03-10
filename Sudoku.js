@@ -1,3 +1,5 @@
-function Sudoku(n){
-    this.n=n
+var Sudoku=class Sudoku{
+    constructor(n){
+        this.n=n
+    }
 }
