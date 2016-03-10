@@ -1,0 +1,2 @@
+var Vertex=class Vertex{
+}
