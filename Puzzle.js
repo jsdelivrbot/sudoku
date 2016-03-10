@@ -10,7 +10,7 @@ require([
     Vertex,
     Edge
 )=>{
-var Puzzle=class Puzzle extends Sudoku{
+exports(class Puzzle extends Sudoku{
     constructor(n,s){
         super(n)
         this.n2=this.n*this.n
@@ -76,13 +76,47 @@ var Puzzle=class Puzzle extends Sudoku{
         }
     }
     get graph(){
-        var graph=new DirectedGraph
+        var
+            puzzle=this,
+            graph=new DirectedGraph,
+            vertices
         class PuzzleVertex extends Vertex{
-            constructor(){
+            constructor(b,r,c,n){
                 super()
+                this.b=b
+                this.r=r
+                this.c=c
+                this.n=n
+            }
+        }
+        vertices=[[],[]]
+        for(let r=0;r<this.n2;r++){
+            vertices[0].push([])
+            for(let c=0;c<this.n2;c++){
+                vertices[0][r].push([])
+                for(let n=0;n<this.n2;n++)
+                    addFalseVertex(r,c,n)
+            }
+        }
+        for(let r=0;r<this.n2;r++){
+            vertices[1].push([])
+            for(let c=0;c<this.n2;c++){
+                vertices[1][r].push([])
+                for(let n=0;n<this.n2;n++)
+                    addTrueVertex(r,c,n)
             }
         }
         return graph
+        function addFalseVertex(row,col,num){
+            var v=new PuzzleVertex(false,row,col,num)
+            vertices[0][r][c].push(v)
+            graph.addVertex(v)
+        }
+        function addTrueVertex(r,c,n){
+            var v=new PuzzleVertex(true,row,col,num)
+            vertices[1][r][c].push(v)
+            graph.addVertex(v)
+        }
     }
     get table(){
         var res=[]
@@ -90,6 +124,5 @@ var Puzzle=class Puzzle extends Sudoku{
             res.push(this.a.slice(this.n2*i,this.n2*(i+1)))
         return res
     }
-}
-exports(Puzzle)
+})
 })

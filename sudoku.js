@@ -5,7 +5,7 @@ Promise.all([
     var
         Puzzle=a[0],
         puzzleData=a[1],
-        puzzle=new Puzzle(2,puzzleData),
+        puzzle=new Puzzle(3,puzzleData),
         startTime,
         steps
     startTime=new Date
